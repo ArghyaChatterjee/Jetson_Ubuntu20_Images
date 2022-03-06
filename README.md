@@ -30,59 +30,42 @@ The following images can be directly pulled from DockerHub without needing to bu
 
   
 
-To download and run one of these images, you can use the included run script from the repo:
+## Instruciton for Download and Run Image
+Download and run one of these images, you can use the included run script from the repo:
 
-  
-
-``` bash
-
-$ scripts/docker_run timongentzsch/l4t-ubuntu20-base:latest
-
+``` 
+git clone https://github.com/timongentzsch/Jetson_Ubuntu20_Images.git
+cd Jetson_Ubuntu20_Images
+git checkout dev
+scripts/docker_run arghyajony/jetson_ubuntu20_update3:latest
 ```
-
-  
 
 For other configurations, below are the instructions to build and test the containers using the included Dockerfiles.
 
-  
-
-## Docker Default Runtime
-
-  
+ 
+## Instruction for Local Build
+### Docker Default Runtime
 
 To enable access to the CUDA compiler (nvcc) during `docker build` operations, add `"default-runtime": "nvidia"` to your `/etc/docker/daemon.json` configuration file before attempting to build the containers:
-
-  
-
+ 
 ``` json
-
 {
-
 "runtimes": {
-
   "nvidia": {
-
     "path": "nvidia-container-runtime",
-
     "runtimeArgs": []
-
   }
-
  },
-
 "default-runtime": "nvidia"
-
 }
 
 ```
-
-  
 
 You will then want to restart the Docker service or reboot your system before proceeding.
 
   
 
-## Build and test the images
+### Build and test the images
 
   
 
@@ -90,56 +73,32 @@ To rebuild the containers from a Jetson device, first clone this repo via [`Git 
 
   
 
-``` bash
-
-$ git clone https://github.com/timongentzsch/Jetson_Ubuntu20_Images.git
-
-$ cd Jetson_Ubuntu20_Images
-
+``` 
+git clone https://github.com/timongentzsch/Jetson_Ubuntu20_Images.git
+cd Jetson_Ubuntu20_Images
+git checkout dev
 ```
-
-  
 
 ## Work with the provided scripts
 
-  
-
 You may want to install the provided scripts to build, run and restart containers with the right set of docker flags:
 
-  
-
-``` bash
-
-$ sudo scripts/install-scripts.sh
-
+``` 
+sudo scripts/install-scripts.sh
 ```
-
-  
-
 This will enable you to quickly iterate your build process and application.
-
-  
 
 After that you can use following commands globally:
 
-  
-
 `dbuild`, `drun`, `dstart`
-
-  
 
 It ensures that the docker environment feels as native as possible by enabling the following features by default:
 
 - USB hot plug
-
 - sound
-
 - network
-
 - bluetooth
-
 - GPU/cuda
-
 - X11
 
   
